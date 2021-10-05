@@ -37,5 +37,5 @@ while running:
         print("\nplease enter a command")
     except IndexError: # more error handling
         print("please enter a command or put in more args")
-    #except (OSError, TypeError, AttributeError): # if user hasn't opened a todo list file yet
-    #    print("must first open a file to use that command")
+    except (OSError, TypeError, AttributeError): # if user hasn't opened a todo list file yet
+        print("must first open a file to use that command")
