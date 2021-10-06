@@ -11,9 +11,6 @@ while running:
             if len(tasks) != 0:
                 print("Number of task left: " + len(tasks))
 
-    if len(tasks) == 0:
-        print("Done for the day!")
-
     try:
         usrinp = input("Enter in a command: ")
         inpargs = usrinp.split()
