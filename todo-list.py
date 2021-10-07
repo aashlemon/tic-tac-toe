@@ -2,15 +2,13 @@ from os import system
 
 running = True
 tasks = {
-
+    "task one": "test"
 }
 notify = 0
 
 while running:
-    if notify == 3:
-            if len(tasks) != 0:
-                print("Number of task left: " + len(tasks))
-
+    if len(tasks) != 0:
+        print("Number of task(s) left: " + str(len(tasks)))
     try:
         usrinp = input("Enter in a command: ")
         inpargs = usrinp.split()
@@ -22,9 +20,12 @@ while running:
                 system("clear")
             except OSError:
                 system("cls")
+        elif inpargs[0] == "print":
+            for key in tasks:
+                print("\ntask name: " + key + "\ntask: " + tasks[key] + "\n")
         else:
             print("command not found")
     except IndexError:
-        print("please enter a command")
+        print("please enter a command / please enter more arguments")
     except EOFError:
-        print("please enter a command")
+        print("\nplease enter a command")
