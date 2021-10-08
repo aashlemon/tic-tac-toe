@@ -1,10 +1,15 @@
 from os import system
+import json
 
 running = True
 tasks = {
     
 }
 notify = 0
+
+# if user is using a file
+openedfile = False
+file = None
 
 while running:
     if len(tasks) != 0:
@@ -15,6 +20,16 @@ while running:
 
         if inpargs[0] == "quit":
             running = False
+
+            if openedfile == True:
+                if input("Save file (y/n)?") == "y":
+                    file.write(tasks)
+                    file.close()
+                elif input("Save file (y/n)?") == "n":
+                    file.close()
+                else:
+                    running = True
+                    print("Please try again")
         elif inpargs[0] == "clear":
             try:
                 system("clear")
@@ -37,6 +52,17 @@ while running:
                 tasks[inpargs[1]] = inpargs[2]
             else:
                 print("Task not found")
+        elif inpargs[0] == "open":
+            try:
+                openedfile = True
+                file = open(inpargs[1], "w+")
+                try:
+                    tasks = json.loads(file.read())
+                except json.decoder.JSONDecodeError:
+                    print("Failed to read file")
+            except FileNotFoundError:
+                openedfile = False
+                print("File not found")
         else:
             print("command not found")
     except IndexError:
