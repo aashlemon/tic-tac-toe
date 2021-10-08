@@ -10,7 +10,7 @@ while running:
     if len(tasks) != 0:
         print("\nNumber of task(s) left: " + str(len(tasks)))
     try:
-        usrinp = input("Enter in a command: ")
+        usrinp = input("\nEnter in a command: ")
         inpargs = usrinp.split()
 
         if inpargs[0] == "quit":
@@ -22,7 +22,9 @@ while running:
                 system("cls")
         elif inpargs[0] == "print":
             for key in tasks:
-                print("\ntask name: " + key + "\ntask: " + tasks[key])
+                print(f"\n{key}: {tasks[key]}")
+            if len(tasks) == 0:
+                print("\nDone for the day!")
         elif inpargs[0] == "add":
             if inpargs[1] in tasks:
                 print("Task name is the same as another task name")
@@ -30,6 +32,11 @@ while running:
                 tasks[inpargs[1]] = "".join(usrinp.split(maxsplit=2)[2])
         elif inpargs[0] == "finish":
             del tasks[inpargs[1]]
+        elif inpargs[0] == "edit":
+            if inpargs[1] in tasks:
+                tasks[inpargs[1]] = inpargs[2]
+            else:
+                print("Task not found")
         else:
             print("command not found")
     except IndexError:

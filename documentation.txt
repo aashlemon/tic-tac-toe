@@ -1,0 +1,30 @@
+quit:
+    enter in this command to quit the program
+clear:
+    clears all text on the screen
+print:
+    print out all of the tasks you have created. prints task in a "task name: task contents" format. if no tasks have been created, it will print out "Done for the day!"
+add:
+    takes two arguments: the task name, and then the contents of the task
+    the format is:
+        add taskname task contents
+    eg:
+        add homework do homework stuff
+
+    you can have spaces when your adding contents to the task, but the task name cannot have spaces
+
+    if the task already exists, the command will print out "Task name is the same as another one"
+edit:
+    takes two arguments: task name, and the new task contents
+
+    the command is similar to add, but you can only use the command on existing tasks.
+
+    if you try to use it on a task that doesn't exist, it will print "Task not found"
+finish:
+    takes one argument: name of the task
+    finishes the task
+
+    format:
+        finish taskname
+    eg:
+        finish homework
