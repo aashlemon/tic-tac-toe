@@ -28,3 +28,22 @@ finish:
         finish taskname
     eg:
         finish homework
+
+--------------------FILES--------------------
+
+note: whenever you open a file, upon quiting, it will first ask you if you want to save your edits made to the file.
+
+open:
+    opens a json formatted file, and loads the data into the program.
+
+    format:
+        open filename
+    eg:
+        open todo-list
+save-as-file:
+    saves current data inside of json formatted file.
+
+    format:
+        save-as-file filename
+    eg:
+        save-as-file homework-todo

@@ -1,4 +1,5 @@
 from os import system
+import json
 
 running = True
 tasks = {
@@ -6,7 +7,15 @@ tasks = {
 }
 notify = 0
 
+# if user is using a file
+filename = None
+openedfile = False
+file = None
+
 while running:
+    if openedfile == True:
+        file = open(filename, "w")
+
     if len(tasks) != 0:
         print("\nNumber of task(s) left: " + str(len(tasks)))
     try:
@@ -15,6 +24,16 @@ while running:
 
         if inpargs[0] == "quit":
             running = False
+
+            if openedfile == True:
+                if input("Save file (y/n)? ") == "y":
+                    file.write(json.dumps(tasks))
+                    file.close()
+                elif input("Save file (y/n)?") == "n":
+                    file.close()
+                else:
+                    running = True
+                    print("Please try again")
         elif inpargs[0] == "clear":
             try:
                 system("clear")
@@ -37,6 +56,22 @@ while running:
                 tasks[inpargs[1]] = inpargs[2]
             else:
                 print("Task not found")
+        elif inpargs[0] == "open":
+            try:
+                openedfile = True
+                filename = inpargs[1]
+                file = open(inpargs[1], "r")
+                try:
+                    tasks = json.loads(file.read())
+                except json.decoder.JSONDecodeError:
+                    print("\nFailed to read file")
+            except FileNotFoundError:
+                openedfile = False
+                print("File not found")
+        elif inpargs[0] == "save-as-file":
+            openedfile = True
+            filename = inpargs[1]
+            file = open(inpargs[1], "w")
         else:
             print("command not found")
     except IndexError:
