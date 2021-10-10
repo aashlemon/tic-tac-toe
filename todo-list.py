@@ -5,7 +5,6 @@ running = True
 tasks = {
     
 }
-notify = 0
 
 # if user is using a file
 filename = None
