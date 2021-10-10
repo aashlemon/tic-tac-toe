@@ -55,7 +55,7 @@ while running:
             if inpargs[1] in tasks:
                 tasks[inpargs[1]] = inpargs[2]
             else:
-                print("Task not found")
+                print("\nTask not found")
         elif inpargs[0] == "open":
             try:
                 openedfile = True
@@ -74,7 +74,7 @@ while running:
             file = open(inpargs[1], "w")
         else:
             print("command not found")
-    except IndexError:
+    except (IndexError, TypeError):
         print("please enter a command / please enter more arguments")
     except EOFError:
         print("\nplease enter a command")
